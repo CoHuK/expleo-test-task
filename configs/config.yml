@@ -1,0 +1,7 @@
+all:  &all
+  default_values:
+    default_timeout: 15
+    number_of_retry: 5
+
+sg:
+  dummy_value: 1

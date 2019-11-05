@@ -23,7 +23,7 @@ After do |scenario|
   $after_scenario = true
   if scenario.failed?
     file_path = "#{AllureHelper.config.attachment_dir}/#{Utils.generate_screenshot_file_name}"
-    AllureHelper.attach_content('Selenium page source', $driver.page_source, AllureHelper::ALLURE_TYPE_XML, false)
+    AllureHelper.attach_content('Selenium page source', @browser.html, AllureHelper::ALLURE_TYPE_HTML, false)
     @browser.screenshot.save(file_path)
     AllureHelper.generate_step_log_and_report(scenario, @current_step_name, AllureHelper.config.attachment_dir)
   end

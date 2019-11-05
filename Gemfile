@@ -7,7 +7,6 @@ gem 'os'
 gem 'page-object'
 gem 'require_all'
 gem 'rspec', '3.5.0'
-gem 'json'
 
 source 'http://user:1234567a@ec2-52-77-239-188.ap-southeast-1.compute.amazonaws.com:9292/' do
   gem 'allure-helper', '0.1.27'

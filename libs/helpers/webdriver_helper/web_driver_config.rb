@@ -19,6 +19,9 @@ module WebdriverHelper
           options.add_argument('--disable-gpu')
           options.add_argument('--no-sandbox')
           options.add_argument("--window-size=#{Consts::WINDOW_SIZE}")
+          if (platform.remote?)
+            options.add_argument(platform.url)
+          end
         end
         options
       end

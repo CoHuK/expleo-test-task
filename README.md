@@ -17,7 +17,7 @@ Command line options:
 ------------------
 * Basic command to run the test:
 ```bash
-bundle exec cucumber --tags @feature.scenario ENVIRONMENT=prod browser=chrome BROWSER_OPTIONS="disable_image" ATTACH_SCREENSHOT=true -f AllureCucumber::Formatter
+bundle exec cucumber --tags @feature.scenario ENVIRONMENT=prod BROWSER=chrome BROWSER_OPTIONS="disable_image" ATTACH_SCREENSHOT=true -f AllureCucumber::Formatter
 ```
 
 Where:

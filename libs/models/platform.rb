@@ -5,6 +5,7 @@ class Platform
     @browser = Browser.new(browser_type)
     @browser_options = browser_options || ''
     @url = url
+    @remote_driver = true if url
   end
 
   def headless?

@@ -27,6 +27,7 @@ After do |scenario|
     @browser.screenshot.save(file_path)
     AllureHelper.generate_step_log_and_report(scenario, @current_step_name, AllureHelper.config.attachment_dir)
   end
+  WebdriverHelper.quit_driver
 end
 
 AfterStep do

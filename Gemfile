@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'activesupport', '5.0.0.1'
+gem 'activesupport', '5.0.2'
 gem 'allure-cucumber', '0.6.3', git: 'git@github.com:CoHuK/allure-cucumber.git', branch: 'fix-for-cucumber-2.4'
 gem 'cucumber', '3.1.2'
 gem 'os'

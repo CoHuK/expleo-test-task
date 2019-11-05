@@ -10,18 +10,17 @@ module WebdriverHelper
         chrome_prefs['download.default_directory'] = Fixtures.instance['download_dir']
         chrome_prefs['credentials_enable_service'] = false
         chrome_prefs['profile.password_manager_enabled'] = false
+        chrome_prefs['browserName'] = 'chrome'
         options = Selenium::WebDriver::Chrome::Options.new(prefs: chrome_prefs)
         options.add_argument('--disable-fullscreen-tab-detaching')
         options.add_argument('--enable-fullscreen-toolbar-reveal')
         if platform.headless?
           options.add_argument('--no-sandbox')
           options.add_argument('--headless')
+          options.add_argument('--disable-dev-shm-usage')
           options.add_argument('--disable-extensions')
           options.add_argument('--disable-gpu')
           options.add_argument("--window-size=#{Consts::WINDOW_SIZE}")
-          if (platform.remote?)
-            options.add_argument(platform.url)
-          end
         end
         options
       end

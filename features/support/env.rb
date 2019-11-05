@@ -4,39 +4,30 @@ require 'require_all'
 require 'rspec'
 require 'allure-cucumber'
 require 'os'
-require 'allure_helper'
 require 'qaa/helpers'
 require 'qaa/fixtures'
 require 'qaa/configuration'
-#require 'webdrivers'
 
 include Qaa # rubocop:disable Style/MixinUsage
 
 PROJECT_DIR = File.expand_path(File.dirname(__FILE__) + '../../..')
 VENTURE = ENV['VENTURE']
 ENVIRONMENT = ENV['ENVIRONMENT']
-
-include AllureCucumber::DSL # rubocop:disable Style/MixinUsage
+NUMBER_OF_RETRY ||= Fixtures.instance[:default_values]['number_of_retry']
 
 Configuration.load(VENTURE, "#{PROJECT_DIR}/configs/config.yml")
 
 require_all "#{PROJECT_DIR}/libs/"
 
-AllureHelper.configure do |c|
-  c.base_dir = PROJECT_DIR
-  c.attachment_dir = 'allure_attachments'
+Allure.configure do |c|
+  c.results_directory = "gen/allure-results"
+  c.clean_results_directory = true
+  c.logging_level = Logger::DEBUG
 end
 
-PROTOCOL ||= Fixtures.instance['protocol']
-BASE_URL ||= Fixtures.instance['base_url']
-NUMBER_OF_RETRY ||= Fixtures.instance[:default_values]['number_of_retry']
+FileUtils.rm_rf("#{PROJECT_DIR}/screenshots")  # hardcoded for safety
+FileUtils.mkdir_p("#{PROJECT_DIR}/screenshots")
 
-FileUtils.rm_rf("#{PROJECT_DIR}/#{AllureHelper.config.attachment_dir}")
-FileUtils.mkdir_p("#{PROJECT_DIR}/#{AllureHelper.config.attachment_dir}")
-LoggerHelper.update_step_for_logger(PROJECT_DIR, AllureHelper.config.attachment_dir)
-
-FileUtils.rm_rf("#{PROJECT_DIR}/#{AllureHelper.config.attachment_dir}")
-FileUtils.mkdir_p("#{PROJECT_DIR}/#{AllureHelper.config.attachment_dir}")
 
 $platform = Platform.new(ENV['BROWSER'],
                          ENV['BROWSER_OPTIONS'],

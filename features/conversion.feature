@@ -13,3 +13,4 @@ Feature: Currency Conversion
       |EUR          | GBP       | 150  |
       |USD          | INR       | 20   |
       |INR          | USD       | 5000 |
+      |MXN          | SAR       | 5000 |

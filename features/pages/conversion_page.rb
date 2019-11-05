@@ -6,12 +6,12 @@ class ConversionPage
 
   text_field(:amount, id: 'cc-amount')
   button(:from_currency, xpath: '//button[@data-id="sourceCurrency"]')
-  element(:source_currency, xpath: '//button[@data-id="sourceCurrency"]//span/div//span')
+  span(:source_currency, xpath: '//button[@data-id="sourceCurrency"]//span/div//span')
   text_field(:search, xpath: '//input[@aria-label="Search"]')
   text_field(:search2, xpath: '//input[@aria-label="Search"]')
   element(:found_currency, class: 'selected active')
   button(:to_currency, xpath: '//button[@data-id="targetCurrency"]')
-  element(:target_currency, xpath: '//button[@data-id="targetCurrency"]//span/div//span')
+  span(:target_currency, xpath: '//button[@data-id="targetCurrency"]//span/div//span')
   button(:convert, id: 'convert')
 
   def choose_currency(currency, which_element)

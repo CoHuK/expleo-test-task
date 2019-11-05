@@ -7,6 +7,7 @@ Feature: Currency Conversion
     And I perform conversion
     Then <amount> is the same after convertion
     And Currencies are the same after convertion
+    And Convertion is done right
     Examples:
       |from_currency|to_currency|amount|
       |GBP          | EUR       | 10   |

@@ -1,7 +1,7 @@
 class Browser
   attr_reader :name
 
-  BROWSERS = %w[chrome firefox safari].freeze
+  BROWSERS = %w[chrome firefox].freeze
   BROWSERS.each do |name|
     define_method "#{name}?" do
       @name == name

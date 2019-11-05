@@ -11,11 +11,19 @@ require 'qaa/configuration'
 include Qaa # rubocop:disable Style/MixinUsage
 
 PROJECT_DIR = File.expand_path(File.dirname(__FILE__) + '../../..')
-VENTURE = ENV['VENTURE']
-ENVIRONMENT = ENV['ENVIRONMENT']
-NUMBER_OF_RETRY ||= Fixtures.instance[:default_values]['number_of_retry']
 
-Configuration.load(VENTURE, "#{PROJECT_DIR}/configs/config.yml")
+# Be careful with modifications! TODO: Add dummy check
+SCREENSHOT_DIR = "#{PROJECT_DIR}/gen/screenshots".freeze
+FileUtils.rm_rf(SCREENSHOT_DIR)
+FileUtils.mkdir_p(SCREENSHOT_DIR)
+
+# WebDrivers locations
+CHROME_DRIVER_MAC_PATH = "#{PROJECT_DIR}/drivers/chromedriver_mac".freeze
+FIREFOX_DRIVER_MAC_PATH = "#{PROJECT_DIR}/drivers/geckodriver_mac".freeze
+CHROME_DRIVER_LINUX_PATH = "#{PROJECT_DIR}/drivers/chromedriver_linux64".freeze
+FIREFOX_DRIVER_LINUX_PATH = "#{PROJECT_DIR}/drivers/geckodriver_linux64".freeze
+
+Configuration.load(ENV['BROWSER'], "#{PROJECT_DIR}/configs/config.yml")
 
 require_all "#{PROJECT_DIR}/libs/"
 
@@ -24,10 +32,6 @@ Allure.configure do |c|
   c.clean_results_directory = true
   c.logging_level = Logger::DEBUG
 end
-
-FileUtils.rm_rf("#{PROJECT_DIR}/screenshots")  # hardcoded for safety
-FileUtils.mkdir_p("#{PROJECT_DIR}/screenshots")
-
 
 $platform = Platform.new(ENV['BROWSER'],
                          ENV['BROWSER_OPTIONS'],

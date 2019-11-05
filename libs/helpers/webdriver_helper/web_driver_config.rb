@@ -2,7 +2,7 @@ module WebdriverHelper
   class WebDriverConfig
     class << self
       def chrome_config(platform)
-        Selenium::WebDriver::Chrome::Service.driver_path = OS.mac? ? Consts::CHROME_DRIVER_MAC_PATH : Consts::CHROME_DRIVER_LINUX_PATH
+        Selenium::WebDriver::Chrome::Service.driver_path = OS.mac? ? CHROME_DRIVER_MAC_PATH : CHROME_DRIVER_LINUX_PATH
         chrome_prefs = {}
         chrome_prefs['profile.default_content_settings.popups'] = 0
         chrome_prefs['disable-popup-blocking'] = true
@@ -20,13 +20,13 @@ module WebdriverHelper
           options.add_argument('--disable-dev-shm-usage')
           options.add_argument('--disable-extensions')
           options.add_argument('--disable-gpu')
-          options.add_argument("--window-size=#{Consts::WINDOW_SIZE}")
+          options.add_argument("--window-size=#{Fixtures.instance['window_size']}")
         end
         options
       end
 
       def firefox_config(platform)
-        Selenium::WebDriver::Service.driver_path = OS.mac? ? Consts::FIREFOX_DRIVER_MAC_PATH : Consts::FIREFOX_DRIVER_LINUX_PATH
+        Selenium::WebDriver::Service.driver_path = OS.mac? ? FIREFOX_DRIVER_MAC_PATH : FIREFOX_DRIVER_LINUX_PATH
         profile = Selenium::WebDriver::Firefox::Profile.new
         profile['browser.download.dir'] = Fixtures.instance['download_dir']
         profile['browser.download.folderList'] = 2

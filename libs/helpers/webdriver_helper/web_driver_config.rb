@@ -14,10 +14,10 @@ module WebdriverHelper
         options.add_argument('--disable-fullscreen-tab-detaching')
         options.add_argument('--enable-fullscreen-toolbar-reveal')
         if platform.headless?
+          options.add_argument('--no-sandbox')
           options.add_argument('--headless')
           options.add_argument('--disable-extensions')
           options.add_argument('--disable-gpu')
-          options.add_argument('--no-sandbox')
           options.add_argument("--window-size=#{Consts::WINDOW_SIZE}")
           if (platform.remote?)
             options.add_argument(platform.url)

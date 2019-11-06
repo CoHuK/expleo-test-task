@@ -32,11 +32,13 @@ Allure.configure do |c|
   c.clean_results_directory = true
   c.logging_level = Logger::DEBUG
 end
+ALLURE_ENVIRONMENT = {}
 
 $platform = Platform.new(ENV['BROWSER'],
                          ENV['BROWSER_OPTIONS'],
                          url: ENV['REMOTE_URL'],
                          remote_driver: ENV['REMOTE_DRIVER'])
+ALLURE_ENVIRONMENT.merge!($platform.to_hash)
 World(PageObject::PageFactory)
 
 # check for CUSTOM_TIMEOUT to return nil or empty
@@ -46,3 +48,5 @@ custom_timeout = if ENV['CUSTOM_TIMEOUT'].to_s.empty?
                    ENV['CUSTOM_TIMEOUT'].to_i
                  end
 Watir.default_timeout = custom_timeout
+
+at_exit {Allure.add_environment(ALLURE_ENVIRONMENT)}

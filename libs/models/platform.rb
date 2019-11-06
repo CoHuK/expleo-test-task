@@ -27,4 +27,11 @@ class Platform
   def remote?
     @remote_driver
   end
+
+  def to_hash
+    result = {browser: @browser.name,
+    browser_options: @browser_options}
+    result[:browser_url] = @url if remote?
+    result
+  end
 end

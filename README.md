@@ -1,4 +1,4 @@
-Ecom UI tests based on Selenium
+UI tests based on Selenium
 ==============
 Demo stand: http://ec2-13-229-72-25.ap-southeast-1.compute.amazonaws.com:8080/job/run-tests/
 Execution is done on AWS instances using dockerised Chrome browser.

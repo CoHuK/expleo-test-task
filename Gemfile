@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'activesupport', '5.0.2'
+gem 'activesupport', '5.2.4.3'
 gem 'cucumber', '3.1.2'
 gem 'os'
 gem 'page-object'
